@@ -13,13 +13,18 @@ def crypt_subdir(path_name,log_file):
             dest=str(abs(hash(uuid.uuid4().get_hex())))+ext+'.aes-128-cbc'
             command='openssl aes-128-cbc -k a19821005 -in "'+source+'" -out "'+ dest+'"';
             print command
-            os.system(command)
+            #os.system(command)
             log(log_file,os.path.basename(dest)+"\t\t\t"+os.path.basename(source))
 
 def log(log_file,msg):
     logger=open(log_file, "ab+")
     logger.write(msg+"\n")
     logger.close()
+
+print """
+    example:
+    python aes_crypt_sub root_path log_file
+    """
 
 
 if len(sys.argv) < 3:
